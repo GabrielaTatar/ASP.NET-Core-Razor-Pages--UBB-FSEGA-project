@@ -11,7 +11,6 @@ namespace Tatar_Gabriela_Lab02.Models
 
         [Display(Name = "Book Title")]
         public string Title { get; set; }
-        public string Author { get; set; }
 
         [Column(TypeName = "decimal(6, 2)")]
         public decimal Price { get; set; }
@@ -21,6 +20,10 @@ namespace Tatar_Gabriela_Lab02.Models
 
         public int? PublisherID { get; set; }
 
+        public int? AuthorID { get; set; }
+
         public Publisher? Publisher { get; set; } //navigation property
+
+        public Author? Author { get; set; }
     }
 }

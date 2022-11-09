@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Tatar_Gabriela_Lab02.Data;
 using Tatar_Gabriela_Lab02.Models;
 
-namespace Tatar_Gabriela_Lab02.Pages.Publishers
+namespace Tatar_Gabriela_Lab02.Pages.Authors
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace Tatar_Gabriela_Lab02.Pages.Publishers
         }
 
         [BindProperty]
-        public Publisher Publisher { get; set; }
+        public Author Author { get; set; }
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
@@ -33,11 +33,10 @@ namespace Tatar_Gabriela_Lab02.Pages.Publishers
         {
           if (!ModelState.IsValid)
             {
-                ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "PublisherName");
                 return Page();
             }
 
-            _context.Publisher.Add(Publisher);
+            _context.Author.Add(Author);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
