@@ -33,6 +33,7 @@ namespace Tatar_Gabriela_Lab02.Pages.Books
 
             Book = await _context.Book
              .Include(b => b.Publisher)
+             .Include(b => b.Author)
              .Include(b => b.BookCategories).ThenInclude(b => b.Category)
              .AsNoTracking()
              .FirstOrDefaultAsync(m => m.ID == id);
@@ -54,6 +55,7 @@ namespace Tatar_Gabriela_Lab02.Pages.Books
             //    FullName = x.LastName + " " + x.FirstName
             //});
 
+            Book = book;
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "PublisherName");
             ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "ID", "FullName");
             return Page();
@@ -73,6 +75,7 @@ namespace Tatar_Gabriela_Lab02.Pages.Books
 
             var bookToUpdate = await _context.Book
             .Include(i => i.Publisher)
+            .Include(i => i.Author)
             .Include(i => i.BookCategories)
             .ThenInclude(i => i.Category)
             .FirstOrDefaultAsync(s => s.ID == id);
@@ -81,6 +84,7 @@ namespace Tatar_Gabriela_Lab02.Pages.Books
             {
                 return NotFound();
             }
+
             if (await TryUpdateModelAsync<Book>(
             bookToUpdate,
             "Book",
@@ -98,10 +102,5 @@ namespace Tatar_Gabriela_Lab02.Pages.Books
             return Page();
         }
     }
-
-    //private bool BookExists(int id)
-    //{
-    //    return _context.Book.Any(e => e.ID == id);
-    //}
     
 }
