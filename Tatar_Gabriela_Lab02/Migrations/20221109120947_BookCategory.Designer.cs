@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tatar_Gabriela_Lab02.Data;
 
@@ -11,9 +12,10 @@ using Tatar_Gabriela_Lab02.Data;
 namespace Tatar_Gabriela_Lab02.Migrations
 {
     [DbContext(typeof(Tatar_Gabriela_Lab02Context))]
-    partial class Tatar_Gabriela_Lab02ContextModelSnapshot : ModelSnapshot
+    [Migration("20221109120947_BookCategory")]
+    partial class BookCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

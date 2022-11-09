@@ -20,5 +20,7 @@ namespace Tatar_Gabriela_Lab02.Data
 
         public DbSet<Tatar_Gabriela_Lab02.Models.Author> Author { get; set; }
 
+        public DbSet<Tatar_Gabriela_Lab02.Models.Category> Category { get; set; }
+
     }
 }
