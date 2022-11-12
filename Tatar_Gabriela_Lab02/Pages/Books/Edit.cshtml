@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Book.AuthorID" class="control-label"></label>
-                <input asp-for="Book.AuthorID" class="form-control" />
+                <select asp-for="Book.AuthorID" class="form-control" asp-items="ViewBag.AuthorID"></select>
                 <span asp-validation-for="Book.AuthorID" class="text-danger"></span>
             </div>
             <div class="form-group">

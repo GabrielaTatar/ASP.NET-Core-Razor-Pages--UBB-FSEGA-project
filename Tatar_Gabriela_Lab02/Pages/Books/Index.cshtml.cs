@@ -23,6 +23,7 @@ namespace Tatar_Gabriela_Lab02.Pages.Books
         public BookData BookD { get; set; }
         public int BookID { get; set; }
         public int CategoryID { get; set; }
+
         public string TitleSort { get; set; }
         public string AuthorSort { get; set; }
         public string CurrentFilter { get; set; }
@@ -44,13 +45,14 @@ namespace Tatar_Gabriela_Lab02.Pages.Books
             .OrderBy(b => b.Title)
             .ToListAsync();
 
+
             if (!String.IsNullOrEmpty(searchString))
             {
-                BookD.Books = BookD.Books.Where(s => s.Author.FirstName.Contains(searchString)
+                BookD.Books = BookD.Books.Where(s => s.Author.FullName.Contains(searchString)
 
-               || s.Author.LastName.Contains(searchString)
                || s.Title.Contains(searchString));
             }
+
 
             if (id != null)
             {
