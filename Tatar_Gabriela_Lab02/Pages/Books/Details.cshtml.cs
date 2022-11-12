@@ -28,7 +28,10 @@ namespace Tatar_Gabriela_Lab02.Pages.Books
                 return NotFound();
             }
 
-            var book = await _context.Book.FirstOrDefaultAsync(m => m.ID == id);
+            var book = await _context.Book.Include(b => b.Publisher)
+             .Include(b => b.Author)
+             .AsNoTracking().FirstOrDefaultAsync(m => m.ID == id);
+
             if (book == null)
             {
                 return NotFound();

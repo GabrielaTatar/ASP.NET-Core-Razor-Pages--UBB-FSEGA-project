@@ -10,8 +10,11 @@ namespace Tatar_Gabriela_Lab02.Models
         Book book)
         {
             var allCategories = context.Category;
-            var bookCategories = new HashSet<int>(
-            book.BookCategories.Select(c => c.CategoryID)); //
+            var bookCategories = new HashSet<int>();
+            if (book is not null)
+            {
+                bookCategories = new HashSet<int>(book.BookCategories.Select(c => c.CategoryID));
+            } //Book Create new error => leave if in place
             AssignedCategoryDataList = new List<AssignedCategoryData>();
             foreach (var cat in allCategories)
             {
