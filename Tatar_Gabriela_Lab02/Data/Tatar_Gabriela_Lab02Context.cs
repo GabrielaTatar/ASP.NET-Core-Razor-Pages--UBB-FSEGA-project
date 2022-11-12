@@ -22,5 +22,9 @@ namespace Tatar_Gabriela_Lab02.Data
 
         public DbSet<Tatar_Gabriela_Lab02.Models.Category> Category { get; set; }
 
+        public DbSet<Tatar_Gabriela_Lab02.Models.Member> Member { get; set; }
+
+        public DbSet<Tatar_Gabriela_Lab02.Models.Borrowing> Borrowing { get; set; }
+
     }
 }
