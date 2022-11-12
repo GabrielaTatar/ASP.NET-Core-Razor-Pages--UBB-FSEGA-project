@@ -34,10 +34,9 @@ namespace Tatar_Gabriela_Lab02.Pages.Books
             Book = await _context.Book
              .Include(b => b.Publisher)
              .Include(b => b.BookCategories).ThenInclude(b => b.Category)
+             .Include(b => b.Author)
              .AsNoTracking()
              .FirstOrDefaultAsync(m => m.ID == id);
-
-            var book = await _context.Book.FirstOrDefaultAsync(m => m.ID == id);
 
             if (Book == null)
             {
@@ -46,13 +45,14 @@ namespace Tatar_Gabriela_Lab02.Pages.Books
 
             //apelam PopulateAssignedCategoryData pentru o obtine informatiile necesare checkbox-
             //urilor folosind clasa AssignedCategoryData
+
             PopulateAssignedCategoryData(_context, Book);
 
-            //var authorList = _context.Author.Select(x => new
-            //{
-            //    x.ID,
-            //    FullName = x.LastName + " " + x.FirstName
-            //});
+            var authorList = _context.Author.Select(x => new
+            {
+                x.ID,
+                FullName = x.LastName + " " + x.FirstName
+            });
 
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "PublisherName");
             ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "ID", "FullName");
@@ -75,17 +75,19 @@ namespace Tatar_Gabriela_Lab02.Pages.Books
             .Include(i => i.Publisher)
             .Include(i => i.BookCategories)
             .ThenInclude(i => i.Category)
+            .Include(i => i.Author)
             .FirstOrDefaultAsync(s => s.ID == id);
 
             if (bookToUpdate == null)
             {
                 return NotFound();
             }
+            
             if (await TryUpdateModelAsync<Book>(
             bookToUpdate,
             "Book",
-            i => i.Title, i => i.Author,
-            i => i.Price, i => i.PublishingDate, i => i.Publisher))
+            i => i.Title, i => i.AuthorID,
+            i => i.Price, i => i.PublishingDate, i => i.PublisherID))
             {
                 UpdateBookCategories(_context, selectedCategories, bookToUpdate);
                 await _context.SaveChangesAsync();
@@ -98,10 +100,5 @@ namespace Tatar_Gabriela_Lab02.Pages.Books
             return Page();
         }
     }
-
-    //private bool BookExists(int id)
-    //{
-    //    return _context.Book.Any(e => e.ID == id);
-    //}
     
 }

@@ -23,6 +23,7 @@ namespace Tatar_Gabriela_Lab02.Pages.Books
         public BookData BookD { get; set; }
         public int BookID { get; set; }
         public int CategoryID { get; set; }
+
         public async Task OnGetAsync(int? id, int? categoryID)
         {
             BookD = new BookData();
@@ -31,9 +32,11 @@ namespace Tatar_Gabriela_Lab02.Pages.Books
             .Include(b => b.Publisher)
             .Include(b => b.BookCategories)
             .ThenInclude(b => b.Category)
+            .Include(b => b.Author)
             .AsNoTracking()
             .OrderBy(b => b.Title)
             .ToListAsync();
+
             if (id != null)
             {
                 BookID = id.Value;
