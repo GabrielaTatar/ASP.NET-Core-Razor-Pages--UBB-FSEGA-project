@@ -162,10 +162,10 @@ namespace Tatar_Gabriela_Lab02.Areas.Identity.Pages.Account
                     await _signInManager.SignInAsync(user,isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty,error.Description);
-                }
+            }
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
             }
             return Page();
         }
