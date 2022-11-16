@@ -11,6 +11,9 @@ namespace Tatar_Gabriela_Lab02.Models
         public int ID { get; set; }
 
         [Display(Name = "Book Title")]
+
+        [Required(ErrorMessage = "Completati obligatoriu!")]
+        [StringLength(150, MinimumLength = 3)]
         public string Title { get; set; }
 
         [Column(TypeName = "decimal(6, 2)")]
