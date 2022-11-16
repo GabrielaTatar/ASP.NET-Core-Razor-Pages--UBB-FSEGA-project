@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Policy;
 using System.Xml.Linq;
 
+
 namespace Tatar_Gabriela_Lab02.Models
 {
     public class Book
@@ -13,6 +14,8 @@ namespace Tatar_Gabriela_Lab02.Models
         public string Title { get; set; }
 
         [Column(TypeName = "decimal(6, 2)")]
+        [Range(0.01, 500)]
+
         public decimal Price { get; set; }
 
         [DataType(DataType.Date)]

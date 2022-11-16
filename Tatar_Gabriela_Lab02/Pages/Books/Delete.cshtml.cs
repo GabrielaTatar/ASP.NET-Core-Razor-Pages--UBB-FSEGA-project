@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +12,8 @@ using Tatar_Gabriela_Lab02.Models;
 
 namespace Tatar_Gabriela_Lab02.Pages.Books
 {
+   [Authorize(Roles = "Admin")]
+
     public class DeleteModel : PageModel
     {
         private readonly Tatar_Gabriela_Lab02.Data.Tatar_Gabriela_Lab02Context _context;
